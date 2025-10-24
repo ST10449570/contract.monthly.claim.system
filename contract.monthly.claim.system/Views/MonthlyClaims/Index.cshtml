@@ -1,0 +1,36 @@
+﻿@model IEnumerable<contract.monthly.claim.system.Models.MonthlyClaim>
+@{
+    ViewData["Title"] = "All Claims";
+}
+
+<h2 class="text-center text-primary mb-4">All Submitted Claims</h2>
+
+<table class="table table-bordered table-striped shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer ID</th>
+            <th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date Submitted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.LecturerId</td>
+                <td>@item.Hours</td>
+                <td>@item.HourlyRate</td>
+                <td>@item.Total</td>
+                <td>@item.Status</td>
+                <td>@item.SubmittedAt.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Submit New Claim</a>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<contract.monthly.claim.system.Models.MonthlyClaim>
+@{
+    ViewData["Title"] = "Pending Claims";
+}
+
+<h2 class="text-center text-info mb-4">Pending Claims for Approval</h2>
+
+<table class="table table-hover table-bordered shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer ID</th>
+            <th>Hours</th>
+            <th>Hourly Rate</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.Id</td>
+                <td>@claim.LecturerId</td>
+                <td>@claim.Hours</td>
+                <td>@claim.HourlyRate</td>
+                <td>@claim.Total</td>
+                <td>@claim.Status</td>
+                <td>
+                    <form asp-action="Approve" method="post" asp-route-id="@claim.Id" class="d-inline">
+                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                    <form asp-action="Reject" method="post" asp-route-id="@claim.Id" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
