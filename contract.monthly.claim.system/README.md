@@ -35,4 +35,5 @@ Microsoft. (2024). ASP.NET Core MVC documentation.
 Microsoft. (2024). Entity Framework Core Overview.
 Nielsen Norman Group. (2023). 10 Usability Heuristics for User Interface Design.
 
-# Final submission 24 october 2025
+## Final 
+submission 24 october 2025
