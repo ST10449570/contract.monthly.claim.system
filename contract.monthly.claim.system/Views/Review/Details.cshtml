@@ -1,0 +1,41 @@
+﻿@model contract.monthly.claim.system.Models.MonthlyClaim
+@{
+    ViewData["Title"] = "Claim Details";
+}
+
+<h2>Claim #@Model.Id</h2>
+
+<div class="mb-3">
+    <strong>Lecturer:</strong> @Model.Lecturer?.FullName ?? "N/A"<br />
+    <strong>Hours:</strong> @Model.Hours<br />
+    <strong>Hourly Rate:</strong> @Model.HourlyRate.ToString("C")<br />
+    <strong>Total:</strong> @(Model.Total.ToString("C"))<br />
+    <strong>Status:</strong> @Model.Status.ToString()<br />
+    <strong>Submitted:</strong> @Model.SubmittedAt.ToLocalTime().ToString("g")
+</div>
+
+@if (Model.Documents?.Any() == true)
+{
+    <h4>Documents</h4>
+    <ul>
+        @foreach (var d in Model.Documents)
+        {
+            <li><a href="~/uploads/@d.StoredFileName" target="_blank">@d.OriginalFileName</a> (@(d.Size / 1024) KB)</li>
+        }
+    </ul>
+}
+
+@if (Model.ApprovalLogs?.Any() == true)
+{
+    <h4>Approval Log</h4>
+    <ul>
+        @foreach (var a in Model.ApprovalLogs.OrderByDescending(x => x.Timestamp))
+        {
+            <li><strong>@a.Action</strong> by @a.PerformedBy on @a.Timestamp.ToLocalTime().ToString("g")</li>
+        }
+    </ul>
+}
+
+<p>
+    <a asp-action="Index" class="btn btn-secondary">Back to Pending</a>
+</p>

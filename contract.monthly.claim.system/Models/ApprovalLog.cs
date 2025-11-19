@@ -1,16 +1,23 @@
-﻿using System;
-
+﻿// contract.monthly.claim.system.Models.ApprovalLog (ApprovalLog.cs)
 namespace contract.monthly.claim.system.Models
 {
     public class ApprovalLog
     {
         public int Id { get; set; }
+        public int ClaimId { get; set; }
 
-        public int MonthlyClaimId { get; set; }
-        public MonthlyClaim? MonthlyClaim { get; set; }
+        // e.g. "Approved", "Rejected", "Submitted"
+        public string? Action { get; set; }
 
-        public string Action { get; set; } = string.Empty; // "Approved" or "Rejected"
-        public string Actor { get; set; } = string.Empty;
+        // Correct property name: PerformedBy (not PerferfomedBy)
+        public string? PerformedBy { get; set; }
+
+        // When action was made
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+
+        /* optional FKs if you need:
+        public int? MonthlyClaimId { get; set; }
+        public MonthlyClaim? Claim { get; set; }
+        */
     }
 }

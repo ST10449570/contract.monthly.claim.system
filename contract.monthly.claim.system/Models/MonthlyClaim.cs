@@ -4,7 +4,7 @@ using System.Reflection.Metadata;
 namespace contract.monthly.claim.system.Models
 {
     public enum ClaimStatus { Pending, Approved, Rejected }
-
+   
     public class MonthlyClaim
     {
         public int Id { get; set; }

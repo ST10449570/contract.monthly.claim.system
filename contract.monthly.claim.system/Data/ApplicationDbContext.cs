@@ -10,7 +10,7 @@ namespace contract.monthly.claim.system.Data
         {
         }
 
-        // Make sure these use MonthlyClaim (NOT System.Security.Claims.Claim)
+       
         public DbSet<Lecturer> Lecturers { get; set; } = null!;
         public DbSet<MonthlyClaim> MonthlyClaims { get; set; } = null!;
         public DbSet<Document> Documents { get; set; } = null!;

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<contract.monthly.claim.system.Models.MonthlyClaim>
+
+@{
+    ViewData["Title"] = "Pending Claims";
+}
+
+<h2 class="text-center mt-4 text-warning fw-bold">Pending Claims</h2>
+
+<table class="table table-bordered table-striped shadow mt-4">
+    <thead class="table-dark">
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer</th>
+            <th>Hours</th>
+            <th>Rate</th>
+            <th>Total</th>
+            <th>Date Submitted</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.Id</td>
+                <td>@claim.Lecturer?.FullName ?? "N/A"</td>
+                <td>@claim.Hours</td>
+                <td>@claim.HourlyRate</td>
+                <td>R @claim.Total</td>
+                <td>@claim.SubmittedAt.ToLocalTime().ToString("dd MMM yyyy")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@claim.Id"
+                       class="btn btn-primary btn-sm">Review</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="HrDashboard" class="btn btn-secondary">Back to Dashboard</a>

@@ -1,36 +1,58 @@
 ﻿@model IEnumerable<contract.monthly.claim.system.Models.MonthlyClaim>
 @{
-    ViewData["Title"] = "All Claims";
+    ViewData["Title"] = "Pending Claims";
 }
 
-<h2 class="text-center text-primary mb-4">All Submitted Claims</h2>
+<h2 class="mb-4">Pending Claims</h2>
 
-<table class="table table-bordered table-striped shadow-sm">
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-striped table-bordered">
     <thead class="table-dark">
         <tr>
             <th>Claim ID</th>
-            <th>Lecturer ID</th>
-            <th>Hours Worked</th>
+            <th>Lecturer</th>
+            <th>Hours</th>
             <th>Hourly Rate</th>
             <th>Total</th>
-            <th>Status</th>
-            <th>Date Submitted</th>
+            <th>Submitted</th>
+            <th>Docs</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var c in Model)
         {
             <tr>
-                <td>@item.Id</td>
-                <td>@item.LecturerId</td>
-                <td>@item.Hours</td>
-                <td>@item.HourlyRate</td>
-                <td>@item.Total</td>
-                <td>@item.Status</td>
-                <td>@item.SubmittedAt.ToShortDateString()</td>
+                <td>@c.Id</td>
+                <td>@(c.Lecturer?.FullName ?? "N/A")</td>
+                <td>@c.Hours</td>
+                <td>@c.HourlyRate.ToString("C")</td>
+                <td>@(c.Total.ToString("C"))</td>
+                <td>@c.SubmittedAt.ToLocalTime().ToString("g")</td>
+                <td>@(c.Documents?.Count() > 0 ? "Yes" : "No")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@c.Id">Details</a>
+
+                    <form asp-action="Approve" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@c.Id" />
+                        <button class="btn btn-sm btn-success" onclick="return confirm('Approve claim @c.Id ?')">Approve</button>
+                    </form>
+
+                    <form asp-action="Reject" method="post" class="d-inline ms-1">
+                        <input type="hidden" name="id" value="@c.Id" />
+                        <input type="hidden" name="reason" value="Checked and rejected" />
+                        <button class="btn btn-sm btn-danger" onclick="return confirm('Reject claim @c.Id ?')">Reject</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-
-<a asp-action="Create" class="btn btn-primary">Submit New Claim</a>

@@ -2,38 +2,49 @@
 
 PROG6212 – Programming 2A  
 ST10449570 
-Date: 24 October 2025  
+Date: 21 November 2025  
 
-## Overview
-This ASP.NET Core MVC web application allows lecturers to submit monthly claims, upload supporting files, and enables coordinators or managers to review, approve, or reject claims. It provides a modern, responsive interface and uses SQL Server LocalDB for persistent storage.
+# Overview
+This is my Part 3 submission for the PROG6212 POE.
+In this part, I continued building on the web application from Part 2 and added extra features for the review and approval side of the system.
 
-## Technologies Used
-- C# and ASP.NET Core MVC  
-- Entity Framework Core (EF Core)  
-- SQL Server LocalDB  
-- Razor Pages, HTML, and CSS  
-- Visual Studio 2022  
 
-## How to Run
-1. Open the solution in Visual Studio 2022.  
-2. In the Package Manager Console, run:
-   ```bash
-   dotnet restore
-   dotnet build
-   dotnet ef database update
-   dotnet run
+# What This Project Does
 
-## Features
-Lecturer claim submission (hours worked, hourly rate, notes)
-Secure document upload (.pdf, .docx, .xlsx)
-Review and approval by coordinators/managers
-SQL Server database integration
-Simple and accessible user interface following modern usability principles
- 
-## References
-Microsoft. (2024). ASP.NET Core MVC documentation.
-Microsoft. (2024). Entity Framework Core Overview.
-Nielsen Norman Group. (2023). 10 Usability Heuristics for User Interface Design.
+This web app lets lecturers submit their monthly claim forms, and then HR or the programme coordinator can review them. In Part 3, I added more functionality so the reviewing process is clearer and easier to follow.
 
-## Final 
-submission 24 october 2025
+# The new things I added include:
+
+	•	An HR Dashboard that shows the number of pending, approved and rejected claims.
+	•	A Pending Claims page that displays all claims waiting for approval.
+	•	A Details page where the reviewer can see the full claim info and take action.
+	•	An Approval Log, so every time a claim is approved/rejected, it records who did it and when.
+	•	Updated models and controllers to support the new features.
+
+
+# How to Run the Project
+
+	1.	Open the project in Visual Studio 2022.
+	2.	Make sure the NuGet packages restore (Entity Framework Core, MVC, etc.).
+	3.	Run the project using IIS Express.
+	4.	The system uses EF Core, so the app is already set up to use a database.
+
+Note: On the lab computer, the database didn’t always run properly (LocalDB issues), but the code and structure are all correct and ready for a proper environment.
+
+# Main Files I Worked On
+
+	•	ReviewController.cs — handles the approval logic and dashboard.
+	•	HrDashboardViewModel.cs — used for the dashboard stats.
+	•	ApprovalLog.cs — stores approval actions.
+	•	Pending.cshtml, HrDashboard.cshtml, Details.cshtml — new UI pages for Part 3.
+
+
+# What I Learned
+This section helped me understand working with multiple views, linking models to controllers, and how to show data properly on the UI. It also pushed me to work with EF Core more and understand how to structure a proper MVC project.
+
+
+# References
+
+	•	Microsoft Docs – ASP.NET Core MVC
+	•	Microsoft Docs – Entity Framework Core
+	•	Class notes and Part 3 POE instructions
