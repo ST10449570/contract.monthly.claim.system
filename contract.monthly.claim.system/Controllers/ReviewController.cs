@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// -----------------------------------------------------------
+// ReviewController - Part 3 (HR Module)
+// Handles Pending, Approve, Reject, Dashboard summary logic.
+// Added documentation for final POE submission.
+// -----------------------------------------------------------
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using contract.monthly.claim.system.Data;
 using contract.monthly.claim.system.Models;
